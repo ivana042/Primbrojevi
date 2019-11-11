@@ -8,7 +8,6 @@ namespace Vsite.Pood
     public class PrimBrojevi
     {
       
-       static bool[] eliminirani; // niz s primbrojevima
 
         // Primjer iz knjige  Robert C. Martin: "Agile Software Development"!!!
         public static int[] GenerirajPrimBrojeve(int max)
@@ -16,15 +15,15 @@ namespace Vsite.Pood
             if (max < 2)
                 return new int[0]; // vrati prazan niz
 
-            InicijalizirajNizIntegera(max);
+            bool [] brojevi = InicijalizirajNizIntegera(max);
 
-            EliminirajVišekratnike();
+            EliminirajVišekratnike(brojevi);
 
-            return SakupiNeeliminiraneBrojeve();
+            return SakupiNeeliminiraneBrojeve(brojevi);
 
         }
 
-        private static int[] SakupiNeeliminiraneBrojeve()
+        private static int[] SakupiNeeliminiraneBrojeve(bool [] eliminirani)
         {
             // koliko je primbrojeva?
             int broj = 0;
@@ -45,32 +44,32 @@ namespace Vsite.Pood
             return primovi; // vrati niz brojeva
         }
 
-        private static void EliminirajVišekratnike()
+        private static void EliminirajVišekratnike(bool[] eliminirani)
         {
             // sito (ide do kvadratnog korijena maksimalnog broja)
 
-            for (int i = 2; i < DajGornjuGranicuIteracije(); ++i)
+            for (int i = 2; i < DajGornjuGranicuIteracije(eliminirani); ++i)
             {
                 if (eliminirani[i] == false) // ako je i prekrižen, prekriži i višekratnike
-                    EliminirajVišekratnikeOd(i);
+                    EliminirajVišekratnikeOd(eliminirani,i);
 
             }
         }
 
-        private static int DajGornjuGranicuIteracije()
+        private static int DajGornjuGranicuIteracije(bool[] eliminirani)
         {
             return (int)(Math.Sqrt(eliminirani.Length) + 1);
         }
 
-        private static void EliminirajVišekratnikeOd(int i)
+        private static void EliminirajVišekratnikeOd(bool[] eliminirani, int i)
         {
             for (int j = 2 * i; j < eliminirani.Length; j += i)
                 eliminirani[j] = true; // višekratnik nije primbroj
         }
 
-        private static void InicijalizirajNizIntegera(int max)
+        private static bool[] InicijalizirajNizIntegera(int max)
         {
-            eliminirani = new bool[max+1]; // niz s primbrojevima
+            bool [] eliminirani = new bool[max+1]; // niz s primbrojevima
 
             // ukloni 0 i 1 koji su primbrojevi po definiciji
             eliminirani[0] = eliminirani[1] = true;
@@ -78,7 +77,7 @@ namespace Vsite.Pood
             // inicijaliziramo sve na true
             for (int i = 2; i < eliminirani.Length; ++i)
                 eliminirani[i] = false;
-
+            return eliminirani;
             
         }
     }
