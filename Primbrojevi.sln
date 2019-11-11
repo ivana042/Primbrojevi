@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Primbrojevi", "Primbrojevi\Primbrojevi.csproj", "{D36AF2A2-B7BE-4655-BBF3-68F2738DE57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testovi", "Testovi\Testovi.csproj", "{8F1F8545-13BE-442A-AC17-35F2BACA0C7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{D36AF2A2-B7BE-4655-BBF3-68F2738DE57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D36AF2A2-B7BE-4655-BBF3-68F2738DE57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D36AF2A2-B7BE-4655-BBF3-68F2738DE57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1F8545-13BE-442A-AC17-35F2BACA0C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1F8545-13BE-442A-AC17-35F2BACA0C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1F8545-13BE-442A-AC17-35F2BACA0C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1F8545-13BE-442A-AC17-35F2BACA0C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40DA5BEF-0232-4981-ADAF-0C546794174E}
 	EndGlobalSection
 EndGlobal
