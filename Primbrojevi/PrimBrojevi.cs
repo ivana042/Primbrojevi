@@ -8,7 +8,7 @@ namespace Vsite.Pood
     public class PrimBrojevi
     {
        static  int s; // duljina niza
-       static bool[] f; // niz s primbrojevima
+       static bool[] eliminirani; // niz s primbrojevima
 
         // Primjer iz knjige  Robert C. Martin: "Agile Software Development"!!!
         public static int[] GenerirajPrimBrojeve(int max)
@@ -20,17 +20,17 @@ namespace Vsite.Pood
 
             Prosijaj();
 
-            return SakupiPrimBrojeve();
+            return IspisiPrimBrojeve();
 
         }
 
-        private static int[] SakupiPrimBrojeve()
+        private static int[] IspisiPrimBrojeve()
         {
             // koliko je primbrojeva?
             int broj = 0;
             for (int i = 0; i < s; ++i)
             {
-                if (f[i])
+                if (eliminirani[i]==false)
                     ++broj;
             }
 
@@ -39,7 +39,7 @@ namespace Vsite.Pood
             // prebaci primbrojeve u rezultat
             for (int i = 0, j = 0; i < s; ++i)
             {
-                if (f[i])
+                if (eliminirani[i]==false)
                     primovi[j++] = i;
             }
             return primovi; // vrati niz brojeva
@@ -51,10 +51,10 @@ namespace Vsite.Pood
 
             for (int i = 2; i < Math.Sqrt(s) + 1; ++i)
             {
-                if (f[i]) // ako je i prekrižen, prekriži i višekratnike
+                if (eliminirani[i]==false) // ako je i prekrižen, prekriži i višekratnike
                 {
                     for (int j = 2 * i; j < s; j += i)
-                        f[j] = false; // višekratnik nije primbroj
+                        eliminirani[j] = true; // višekratnik nije primbroj
                 }
             }
         }
@@ -62,15 +62,16 @@ namespace Vsite.Pood
         private static void InicijalizirajSito(int max)
         {
             s = max + 1; // duljina niza
-            f = new bool[s]; // niz s primbrojevima
-
-
-            // inicijaliziramo sve na true
-            for (int i = 0; i < s; ++i)
-                f[i] = true;
+            eliminirani = new bool[s]; // niz s primbrojevima
 
             // ukloni 0 i 1 koji su primbrojevi po definiciji
-            f[0] = f[1] = false;
+            eliminirani[0] = eliminirani[1] = true;
+
+            // inicijaliziramo sve na true
+            for (int i = 2; i < s; ++i)
+                eliminirani[i] = false;
+
+            
         }
     }
 }
